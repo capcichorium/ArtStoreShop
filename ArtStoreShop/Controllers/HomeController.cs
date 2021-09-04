@@ -9,29 +9,35 @@ using System.Threading.Tasks;
 
 namespace ArtStoreShop.Controllers
 {
+    
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private ApplicationContext db;
+        
+        public HomeController(ApplicationContext context)
         {
-            _logger = logger;
+            db = context;
         }
-
+        
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult Privacy()
+       
+        public IActionResult About()
         {
             return View();
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        
+      
+        public IActionResult Login()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
+        }
+        
+        public IActionResult Register()
+        {
+            return View();
         }
     }
 }

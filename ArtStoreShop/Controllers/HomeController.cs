@@ -1,5 +1,6 @@
 ﻿using ArtStoreShop.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,24 @@ namespace ArtStoreShop.Controllers
         {
             db = context;
         }
-        
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
+        {
+            return View(await db.Categories.ToListAsync());
+        }
+
+        public IActionResult Create()
         {
             return View();
         }
-       
+        [HttpPost]
+        public async Task<IActionResult> Create(Category category)
+        {
+            db.Categories.Add(category);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
         public IActionResult About()
         {
             return View();
@@ -36,6 +49,18 @@ namespace ArtStoreShop.Controllers
         }
         
         public IActionResult Register()
+        {
+            return View();
+        }
+        public IActionResult PersonalAccount()
+        {
+            return View();
+        }
+        public IActionResult Info()
+        {
+            return View();
+        }
+        public IActionResult Cart()
         {
             return View();
         }

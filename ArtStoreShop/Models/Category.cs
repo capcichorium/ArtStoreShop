@@ -5,6 +5,6 @@ namespace ArtStoreShop.Models
     {
         public int id { get; set; }
         public string name { get; set; }
-        public int desc { get; set; }
+        public string desc { get; set; }
     }
 }

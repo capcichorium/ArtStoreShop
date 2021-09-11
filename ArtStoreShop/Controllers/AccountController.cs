@@ -41,7 +41,10 @@ namespace ArtStoreShop.Controllers
 
                     await Authenticate(user); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    if (user.role.name == "admin")
+                        return RedirectToAction("Login", "Account");
+                    else 
+                        return RedirectToAction("Login", "Account");
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
@@ -66,9 +69,13 @@ namespace ArtStoreShop.Controllers
                 {
                     await Authenticate(user); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    if (user.role.name == "admin")
+                        return RedirectToAction("Login", "Account");
+                    else
+                        return RedirectToAction("Login", "Account");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+
             }
             return View(model);
         }
@@ -86,5 +93,6 @@ namespace ArtStoreShop.Controllers
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
+       
     }
 }

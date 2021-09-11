@@ -8,50 +8,57 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ArtStoreShop</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Магазин</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Register">Регистрация</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Вход</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">О нас</a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    @RenderBody()
-    @*<div class="container">
-        <main role="main" class="pb-3">
-
-        </main>
-    </div>*@
-
-    <footer class="border-top footer text-muted">
+    <header class="p-3 bg-dark text-white">
         <div class="container">
-            &copy; 2021 - ArtStoreShop - <a asp-area="" asp-controller="Home" asp-action="About">О нас</a>
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    
+                    <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Магазин</a></li>
+                    <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Info">Информация</a></li>
+                    <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="About">О нас</a></li>
+                </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    <input type="search" class="form-control form-control-dark" placeholder="Поиск товаров..." aria-label="Search">
+                </form>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary btn-sm"> <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Login">Вход</a></button>
+                    <button type="button" class="btn btn-secondary btn-sm "> <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Register">Регистрация</a></button>
+                    <button type="button" class="btn btn-secondary btn-sm "> <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="PersonalAccount">Личный кабинет</a></button>
+                    <button type="button" class="btn btn-secondary btn-sm "> <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Cart">Корзина</a></button>
+                    
+                </div>
+                @*<ul>
+                    <li> <a href=""> <img src="/img/vk.png" width="30" height="30" style="margin-right:10px;" /></a> </li>
+                </ul>*@
+                
+
+
+
+
+            </div>
         </div>
-    </footer>
+    </header>
+    
+    @RenderBody()
+
+    @*<footer class="p-lg-5 bg-dark text-white">
+        <div class="container">
+            &copy; 2021 - ArtStoreShop - <a href="https://vk.com/art.store" class="pr-4"> <img src="/img/vk.png" width="20" height="20" /></a>
+        </div>
+    </footer>*@
+
+    <div class="footer" style="text-align: center">
+        <div class="container">
+            &copy; 2021 - ArtStoreShop - <a href="https://vk.com/art.store" class="pr-4"> <img src="/img/vk.png" width="20" height="20" /></a>
+        </div>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

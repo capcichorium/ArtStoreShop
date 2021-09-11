@@ -17,7 +17,9 @@ namespace ArtStoreShop.Models
             : base(options)
         {
             Database.EnsureCreated();
+            
         }
+      
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             string adminRoleName = "admin";
@@ -34,6 +36,16 @@ namespace ArtStoreShop.Models
             modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, userRole });
             modelBuilder.Entity<User>().HasData(new User[] { adminUser });
             base.OnModelCreating(modelBuilder);
+
+            string name1 = "Футболки 3D";
+            string desc1 = "is t-shirt ";
+
+            var tshirt = new Category { id = 1, name = name1, desc = desc1 };
+
+            modelBuilder.Entity<Category>().HasData(new Category[] { tshirt});
+            base.OnModelCreating(modelBuilder);
+
+
         }
     }
 }

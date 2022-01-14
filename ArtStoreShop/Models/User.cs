@@ -1,17 +1,18 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArtStoreShop.Models
 {
-    public class User
+    public class User : IdentityUser
     {
-        public int id { get; set; }
-        public string login { get; set; }
-        public string password { get; set; }
-        public int? roleId { get; set; }
-        public Role role { get; set; }
-        public string firstname { get; set; }
-        public string lastname { get; set; }
-        public string adress { get; set; }
-        public string email { get; set; }
+        [Key]
+        
+        public string Login { get; set; }
+        public int RoleId { get; set; }
+        public string Name { get; set; }
+        public string Adress { get; set; }
+        public int Year { get; set; }
+        
     }
 }

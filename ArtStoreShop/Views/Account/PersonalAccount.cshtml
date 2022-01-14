@@ -1,0 +1,72 @@
+﻿@model ArtStoreShop.ViewModels.LoginViewModel
+
+@if (User.Identity.IsAuthenticated)
+{
+
+    <div class="col-md-6" style="margin-left: 27%">
+        <h3 class="mb-0" style="margin-top : 2%; margin-bottom: 2%">Профиль</h3>
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="margin-top : 2%">
+            <div class="col p-4 d-flex flex-column position-static">
+                <h3>@Model.Name</h3>
+                <p class="card-text mb-auto">Email: @User.Identity.Name</p>
+                <div class="row">
+                    <div class="col">
+
+                        <form method="post" asp-controller="Account" asp-action="Logout">
+                            <button class="btn btn-secondary" type="submit" style="margin-top: 4%">Выход</button>
+                        </form>
+                    </div>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <div class="col">
+                            <form method="post" asp-controller="Roles" asp-action="List">
+                                <button class="btn btn-dark" type="submit" style="margin-top: 4%">Роли</button>
+                            </form>
+                        </div>
+                        <div class="col">
+                            <form method="post" asp-controller="Users" asp-action="Index">
+                                <button class="btn btn-dark" type="submit" style="margin-top: 4%">Пользователи</button>
+                            </form>
+                        </div>
+                    }
+                </div>
+
+            </div>
+
+            <div class="col-auto d-none d-lg-block">
+                <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+
+            </div>
+
+        </div>
+        <h3>История заказов</h3>
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="margin-top : 2%; height : 10%">
+
+            <div class="col p-4 d-flex flex-column position-static">
+                <p>Заказ</p>
+            </div>
+
+
+        </div>
+
+    </div>
+
+}
+else
+{
+    <div style="margin-left: 42%; margin-top: 15%">
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+
+            <form method="post" asp-controller="Account" asp-action="Register">
+                <button class="btn btn-dark btn-lg" type="submit">Регистрация</button>
+            </form>
+
+            <form method="post" asp-controller="Account" asp-action="Login" style="margin-left: 2%">
+                <button class="btn btn-dark btn-lg" type="submit">Вход</button>
+            </form>
+        </div>
+
+    </div>
+
+}

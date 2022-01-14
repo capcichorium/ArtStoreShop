@@ -1,0 +1,32 @@
+﻿@model ArtStoreShop.Models.Product
+
+
+@{
+    ViewBag.Title = "Добавление товара";
+}
+<form asp-action="Create" asp-controller="Products" asp-antiforgery="true" method="post" enctype="multipart/form-data" >
+    <div>
+        <div>
+            <label asp-for="Name"></label>
+            <input type="text" asp-for="Name" />
+        </div>
+        <div>
+            <label asp-for="Price"></label>
+            <input asp-for="Price" />
+        </div>
+        <div>
+            <label asp-for="CategoryId"></label>
+            <select asp-for="CategoryId" asp-items="ViewBag.Categories"></select>
+        </div>
+        <p>
+            <label>Аватар</label>
+            <input name="uploadedFile" type="file" class="form-control" />
+        </p>
+        <div>
+            <input type="submit" value="Добавить товар" />
+        </div>
+    </div>
+</form>
+
+
+

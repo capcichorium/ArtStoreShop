@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header class="p-3 bg-dark text-white">
+    <header class="p-2 bg-dark text-white">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -17,7 +17,7 @@
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     
-                    <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Магазин</a></li>
+                    <li><a class="nav-link text-white"  asp-area="" asp-controller="Home" asp-action="Index">Магазин</a></li>
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Info">Информация</a></li>
                     <li><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="About">О нас</a></li>
                 </ul>
@@ -27,33 +27,22 @@
                 </form>
 
                 <div class="text-end">
-                    <button type="button" class="btn btn-secondary btn-sm"> <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Login">Вход</a></button>
-                    <button type="button" class="btn btn-secondary btn-sm "> <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Register">Регистрация</a></button>
-                    <button type="button" class="btn btn-secondary btn-sm "> <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="PersonalAccount">Личный кабинет</a></button>
-                    <button type="button" class="btn btn-secondary btn-sm "> <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Cart">Корзина</a></button>
+                    <button type="button" class="btn btn-secondary btn-sm"> <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Login">Вход</a></button>
+                    <button type="button" class="btn btn-secondary btn-sm "> <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="Register">Регистрация</a></button>
+                    <button type="button" class="btn btn-secondary btn-sm "> <a class="nav-link text-white" asp-area="" asp-controller="Account" asp-action="PersonalAccount">Личный кабинет</a></button>
+                    <button type="button" class="btn btn-secondary btn-sm position-relative "> <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Cart">Корзина<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        99+ @*TODO:реализовать счетчик товаров в корзине*@  </span></a></button>
                     
                 </div>
-                @*<ul>
-                    <li> <a href=""> <img src="/img/vk.png" width="30" height="30" style="margin-right:10px;" /></a> </li>
-                </ul>*@
-                
-
-
-
-
             </div>
         </div>
     </header>
     
     @RenderBody()
 
-    @*<footer class="p-lg-5 bg-dark text-white">
-        <div class="container">
-            &copy; 2021 - ArtStoreShop - <a href="https://vk.com/art.store" class="pr-4"> <img src="/img/vk.png" width="20" height="20" /></a>
-        </div>
-    </footer>*@
 
-    <div class="footer" style="text-align: center">
+
+    <div class="footer" style="text-align: center;">
         <div class="container">
             &copy; 2021 - ArtStoreShop - <a href="https://vk.com/art.store" class="pr-4"> <img src="/img/vk.png" width="20" height="20" /></a>
         </div>

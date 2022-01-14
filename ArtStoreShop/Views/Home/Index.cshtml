@@ -1,31 +1,38 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model IEnumerable<ArtStoreShop.Models.Category>
+@using ArtStoreShop.Models;
+@using ArtStoreShop.ViewModels;
+
+@model IndexViewModel
 
 <img src="/img/artstoreshop.png" class="img-fluid" style=" width: 100%">
+<body>
+    <div class="row">
+        <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+            <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+                <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+                <h6 class="flex-lg-shrink-0 text-dark">Категории товаров</h6>
+            </a>
+            <ul class="list-unstyled ps-0">
+                @foreach (var item in Model.Categories)
+                {
+                    <form class="mb-1"  method="post">
+                        <button asp-action="Index" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-outline-dark" style="margin-left: 20px">
+                            @item.CategoryName
+                        </button>
+                    </form>
+                }
+            </ul>
+        </div>
 
-<div class="row">
-    <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-            <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-            <span>Категории товаров</span>
-        </a>
-        <ul class="list-unstyled ps-0">
-            @foreach (var item in Model)
-            {
-                <li class="mb-1">
-                    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-                        @item.name
-                    </button>
-                </li>
-            }
-        </ul>
+        <div class="container">
+            @await Html.PartialAsync("GetProducts")
+        </div>
+
+
     </div>
+</body>
 
-    <div class="container">
-
-    </div>
-</div>
 
 

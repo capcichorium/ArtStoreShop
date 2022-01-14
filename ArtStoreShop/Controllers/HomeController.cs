@@ -7,28 +7,32 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using ArtStoreShop.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArtStoreShop.Controllers
 {
-    
+
     public class HomeController : Controller
     {
         private ApplicationContext db;
-        
+        IEnumerable<Product> products;
+        IEnumerable<Category> categories;
         public HomeController(ApplicationContext context)
         {
             db = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await db.Categories.ToListAsync());
+            products = db.Products;
+            categories  = from u in db.Categories
+                                 orderby u.CategoryName
+                                 select u;
+            var ivm = new IndexViewModel { Categories = categories, Products = products };
+            return View(ivm);
         }
 
-        public IActionResult Create()
-        {
-            return View();
-        }
         [HttpPost]
         public async Task<IActionResult> Create(Category category)
         {
@@ -36,26 +40,21 @@ namespace ArtStoreShop.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
+        [HttpPost]
+        public async Task<IActionResult> Index(int id)
+        {
+            var prod = db.Products.Where(i => i.CategoryId == id);
+            categories = from u in db.Categories
+                         orderby u.CategoryName
+                         select u;
+            var ivm = new IndexViewModel { Categories = categories, Products = prod };
+            return View(ivm);
+        }
         public IActionResult About()
         {
             return View();
         }
         
-      
-        public IActionResult Login()
-        {
-            return View();
-        }
-        
-        public IActionResult Register()
-        {
-            return View();
-        }
-        public IActionResult PersonalAccount()
-        {
-            return View();
-        }
         public IActionResult Info()
         {
             return View();
@@ -63,6 +62,22 @@ namespace ArtStoreShop.Controllers
         public IActionResult Cart()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddToCart(int id)
+        {
+            var prod = db.Products.FirstOrDefault(i => i.Id == id);
+            var cart = new Cart();
+            if (prod != null)
+            {
+                var item = new ItemCart() {ProductId = prod.Id, Avatar = prod.Avatar, Name = prod.Name, Price = prod.Price};
+                cart.listItems.Add(item);
+                item.CartId = cart.CartId;
+                db.Carts.Add(cart);
+                await db.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

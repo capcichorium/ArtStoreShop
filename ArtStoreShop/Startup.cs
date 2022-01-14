@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ArtStoreShop.Models;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace ArtStoreShop
 {
@@ -26,18 +28,15 @@ namespace ArtStoreShop
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = "Server=(localdb)\\mssqllocaldb;Database=artstoreshopdb;Trusted_Connection=True;";
+            string connection = "Server=(localdb)\\mssqllocaldb;Database=artstoreshop;Trusted_Connection=True;";
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
-
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-                {
-                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
-                    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
-                });
+            services.AddDbContext<ApplicationContext>(options =>
+                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<User, IdentityRole>()
+                     .AddEntityFrameworkStores<ApplicationContext>();
 
             services.AddControllersWithViews();
-            
+
         }
 
 

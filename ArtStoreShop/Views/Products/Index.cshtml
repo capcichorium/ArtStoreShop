@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ArtStoreShop.Models.Product>
+
+
+@{
+    ViewBag.Title = "Все товары";
+}
+
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr><td>@item.Name<td>@item.Price</td></tr>
+    }
+</table>

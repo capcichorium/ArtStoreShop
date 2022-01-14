@@ -1,0 +1,14 @@
+﻿
+@model IEnumerable<ArtStoreShop.Models.Category>
+
+@{
+    ViewBag.Title = "Все категории";
+}
+<a asp-action="Create" asp-controller="Categories" >Добавить категорию</a>
+<table class="table">
+    <tr><td>Название</td><td>Описание</td></tr>
+    @foreach (var item in Model)
+    {
+        <tr><td>@item.CategoryName</td><td>@item.Desc</td></tr>
+    }
+</table>
